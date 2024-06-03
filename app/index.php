@@ -16,6 +16,9 @@ require_once './db/AccesoDatos.php';
 // require_once './middlewares/Logger.php';
 
 require_once './controllers/UsuarioController.php';
+require_once './controllers/MenuController.php';
+require_once './controllers/PedidoController.php';
+require_once './controllers/MesaController.php';
 
 // Load ENV
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -38,6 +41,32 @@ $app->group('/usuario', function (RouteCollectorProxy $group) {
     $group->post('s/modifica', \UsuarioController::class . ':ModificarUno');
     $group->get('/baja/{usuario}', \UsuarioController::class . ':BorrarUno');
   });
+
+  $app->group('/menu', function (RouteCollectorProxy $group) {
+    $group->get('s/', \MenuController::class . ':TraerTodos');
+    $group->get('/{menu}', \MenuController::class . ':TraerUno');
+    $group->post('/alta', \MenuController::class . ':CargarUno');
+    $group->post('s/modifica', \MenuController::class . ':ModificarUno');
+    $group->get('/baja/{menu}', \MenuController::class . ':BorrarUno');
+  });
+
+  $app->group('/pedido', function (RouteCollectorProxy $group) {
+    $group->get('s/', \PedidoController::class . ':TraerTodos');
+    $group->get('/{pedido}', \PedidoController::class . ':TraerUno');
+    $group->post('/alta', \PedidoController::class . ':CargarUno');
+    $group->post('s/modifica', \PedidoController::class . ':ModificarUno');
+    $group->get('/baja/{id_pedido}', \PedidoController::class . ':BorrarUno');
+  });
+
+  $app->group('/mesa', function (RouteCollectorProxy $group) {
+    $group->get('s/', \MesaController::class . ':TraerTodos');
+    $group->get('/{id_mesa}', \MesaController::class . ':TraerUno');
+    $group->post('/alta', \MesaController::class . ':CargarUno');
+    $group->post('s/modifica', \MesaController::class . ':ModificarUno');
+    $group->get('/baja/{id_mesa}', \MesaController::class . ':BorrarUno');
+  });
+
+
 
 $app->get('[/]', function (Request $request, Response $response) {    
     $payload = json_encode(array("mensaje" => "Slim Framework 4 PHP"));
