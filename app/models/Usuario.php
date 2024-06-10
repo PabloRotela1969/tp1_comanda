@@ -4,19 +4,22 @@ class Usuario
 {
     public $id_usuario;
     public $nombre;
-    public $estado;
-    public $id_pedido;
+    public $apellido;
+    public $mail;
+    //public $estado;// dak forzil
+    //public $id_pedido;// dak forzil
     public $rol;
+    public $activo;
 
 
 
     public function crearUsuario()
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuario (nombre,estado,id_pedido,rol,activo) VALUES (:nombre,:estado,:id_pedido,:rol,1)");
+        $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuario (nombre,apellido,mail,rol,activo) VALUES (:nombre,:apellido,:mail,:rol,1)");
         $consulta->bindValue(':nombre', $this->nombre, PDO::PARAM_STR);
-        $consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
-        $consulta->bindValue(':id_pedido', $this->id_pedido, PDO::PARAM_INT);
+        $consulta->bindValue(':apellido', $this->apellido, PDO::PARAM_STR);
+        $consulta->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $consulta->bindValue(':rol', $this->rol, PDO::PARAM_STR);
         $consulta->execute();
 
@@ -26,16 +29,17 @@ class Usuario
     public static function obtenerTodos()
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDatos->prepararConsulta("SELECT id_usuario,nombre,estado,id_pedido,rol FROM usuario WHERE activo > 0");
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT id_usuario,nombre,apellido,mail,rol,activo FROM usuario WHERE activo > 0");
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');
     }
 
-    public static function obtenerUsuario($nombre)
+    public static function obtenerUsuario($nombre,$apellido)
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDatos->prepararConsulta("SELECT id_usuario,nombre,estado,id_pedido,rol FROM usuario WHERE nombre = :nombre");
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT id_usuario,nombre,apellido,mail,rol,activo FROM usuario WHERE nombre = :nombre and apellido = :apellido");
         $consulta->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+        $consulta->bindValue(':apellido', $apellido, PDO::PARAM_STR);
         $consulta->execute();
 
         return $consulta->fetchObject('Usuario');
@@ -44,20 +48,21 @@ class Usuario
     public static function modificarUsuario($usuario)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDato->prepararConsulta("UPDATE usuario SET nombre = :nombre, estado = :estado,id_pedido = :id_pedido,rol = :rol WHERE id_usuario = :id");
+        $consulta = $objAccesoDato->prepararConsulta("UPDATE usuario SET nombre = :nombre, apellido = :apellido,mail = :mail,rol = :rol WHERE id_usuario = :id");
         $consulta->bindValue(':nombre', $usuario->nombre, PDO::PARAM_STR);
-        $consulta->bindValue(':estado', $usuario->estado, PDO::PARAM_STR);
-        $consulta->bindValue(':id_pedido', $usuario->id_pedido, PDO::PARAM_INT);
+        $consulta->bindValue(':apellido', $usuario->apellido, PDO::PARAM_STR);
+        $consulta->bindValue(':mail', $usuario->mail, PDO::PARAM_INT);
         $consulta->bindValue(':rol', $usuario->rol, PDO::PARAM_STR);
         $consulta->bindValue(':id', $usuario->id_usuario, PDO::PARAM_INT);
         $consulta->execute();
     }
 
-    public static function borrarUsuario($usuario)
+    public static function borrarUsuario($nombre,$apellido)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDato->prepararConsulta("UPDATE usuario SET activo = 0 WHERE nombre = :nombre");
-        $consulta->bindValue(':nombre', $usuario, PDO::PARAM_STR);
+        $consulta = $objAccesoDato->prepararConsulta("UPDATE usuario SET activo = 0 WHERE nombre = :nombre and apellido = :apellido");
+        $consulta->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+        $consulta->bindValue(':apellido', $apellido, PDO::PARAM_STR);
         $consulta->execute();
     }
 

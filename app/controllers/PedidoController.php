@@ -10,12 +10,19 @@ class PedidoController extends Pedido
         $id_menu             = $parametros['id_menu'];
         $tiempoEstimado      = $parametros['tiempoEstimado'];
         $id_mesa             = $parametros['id_mesa'];
+        $fecha               = $parametros['fecha'];
+        $id_usuario          = $parametros['id_usuario'];
+        $foto                = $parametros['foto'];
+
         $usr = new Pedido();
         
         $usr->estado_pedido = $estado_pedido;
         $usr->tiempoEstimado = $tiempoEstimado;
         $usr->id_menu = $id_menu;
         $usr->id_mesa = $id_mesa;
+        $usr->fecha = $fecha;
+        $usr->id_usuario = $id_usuario;
+        $usr->foto = $foto;
         $numeroPedido = $usr->crearPedido();
         $payload = json_encode(array("mensaje" => "Pedido ".$numeroPedido." creado exitosamente"));
         $response->getBody()->write($payload);
@@ -54,11 +61,17 @@ class PedidoController extends Pedido
         $id_menu             = $parametros['id_menu'];
         $tiempoEstimado      = $parametros['tiempoEstimado'];
         $id_mesa             = $parametros['id_mesa'];
+        $fecha               = $parametros['fecha'];
+        $id_usuario          = $parametros['id_usuario'];
+        $foto                = $parametros['foto'];
+        
         $Pedido->estado_pedido = $estado;
         $Pedido->id_menu = $id_menu;
         $Pedido->tiempoEstimado = $tiempoEstimado;
         $Pedido->id_mesa = $id_mesa;
-
+        $Pedido->fecha = $fecha;
+        $Pedido->id_usuario = $id_usuario;
+        $Pedido->foto = $foto;
         Pedido::modificarPedido($Pedido);
 
         $payload = json_encode(array("mensaje" => "Pedido ".$id_pedido." modificado exitosamente"));

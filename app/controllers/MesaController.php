@@ -8,19 +8,15 @@ class MesaController extends Mesa
         $parametros          = $request->getParsedBody();
         $estado_mesa         = $parametros['estado_mesa'];
         $importe             = $parametros['importe'];
-        $fecha               = $parametros['fecha'];
         $tipoComentario      = $parametros['tipoComentario'];
         $comentario          = $parametros['comentario'];
-        $foto                = $parametros['foto'];
 
         $usr = new Mesa();
         
         $usr->estado_mesa = $estado_mesa;
         $usr->importe = $importe;
-        $usr->fecha = $fecha;
         $usr->tipoComentario = $tipoComentario;
         $usr->comentario = $comentario;
-        $usr->foto = $foto;
         $numeroMesa = $usr->crearMesa();
         $payload = json_encode(array("mensaje" => "Mesa ".$numeroMesa." creado exitosamente"));
         $response->getBody()->write($payload);
@@ -57,16 +53,12 @@ class MesaController extends Mesa
         $Mesa = Mesa::obtenerMesa($id_Mesa);
         $estado_mesa            = $parametros['estado_mesa'];
         $importe                = $parametros['importe'];
-        $fecha                  = $parametros['fecha'];
         $tipoComentario         = $parametros['tipoComentario'];
         $comentario             = $parametros['comentario'];
-        $foto                   = $parametros['foto'];
         $Mesa->estado_mesa = $estado_mesa;
         $Mesa->importe = $importe;
-        $Mesa->fecha = $fecha;
         $Mesa->tipoComentario = $tipoComentario;
         $Mesa->comentario = $comentario;
-        $Mesa->foto = $foto;
 
         Mesa::modificarMesa($Mesa);
 

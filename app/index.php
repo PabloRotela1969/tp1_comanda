@@ -13,7 +13,7 @@ use Slim\Routing\RouteContext;
 require __DIR__ . '/../vendor/autoload.php';
 
 require_once './db/AccesoDatos.php';
-// require_once './middlewares/Logger.php';
+require_once './middlewares/UsuarioLogeadoMiddleware.php';
 
 require_once './controllers/UsuarioController.php';
 require_once './controllers/MenuController.php';
@@ -36,10 +36,10 @@ $app->addBodyParsingMiddleware();
 // Routes
 $app->group('/usuario', function (RouteCollectorProxy $group) {
     $group->get('s/', \UsuarioController::class . ':TraerTodos');
-    $group->get('/{usuario}', \UsuarioController::class . ':TraerUno');
-    $group->post('/alta', \UsuarioController::class . ':CargarUno');
+    $group->get('/{nombre} {apellido}', \UsuarioController::class . ':TraerUno');
+    $group->post('/alta', \UsuarioController::class . ':CargarUno')->add(new UsuarioLogeadoMiddleware());
     $group->post('s/modifica', \UsuarioController::class . ':ModificarUno');
-    $group->get('/baja/{usuario}', \UsuarioController::class . ':BorrarUno');
+    $group->get('/baja/{nombre} {apellido}', \UsuarioController::class . ':BorrarUno');
   });
 
   $app->group('/menu', function (RouteCollectorProxy $group) {
