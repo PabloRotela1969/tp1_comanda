@@ -78,6 +78,31 @@ class PedidoController extends Pedido
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');
     }
+
+    public function CambiarEstado($request, $response, $args)
+    {
+        $parametros = $request->getParsedBody();
+        $id_pedido     = $parametros['id_pedido'];
+        $nuevo_estado = $parametros['estado_pedido'];
+
+        if(Pedido::obtenerPedido($id_pedido) != null)
+        {
+            $Pedido = Pedido::obtenerPedido($id_pedido);
+            $viejo_estado = $Pedido->estado_pedido;
+            $Pedido->estado_pedido = $nuevo_estado;
+            Pedido::modificarPedido($Pedido);
+            $payload = json_encode(array("mensaje" => "Pedido ".$id_pedido." se cambió de ".$viejo_estado." a ".$nuevo_estado));
+        }
+        else
+        {
+            $payload = json_encode(array("mensaje" => "NO SE ENCONTRÓ EL Pedido ".$id_pedido));
+        }
+
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
+
     public function BorrarUno($request, $response, $args)
     {
         $usr = $args['id_pedido'];

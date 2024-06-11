@@ -13,13 +13,13 @@ class UsuarioLogeadoMiddleware
         if(isset($parametros["rol"]))
         {
             $rol = $parametros["rol"];
-            if($rol == "admin" || $rol == "socio" || $rol == "cocinero" || $rol == "bartender")
+            if($rol == "admin" || $rol == "socio" || $rol == "cocinero" || $rol == "bartender" || $rol == "mozo" || $rol == "cervecero"  || $rol == "cliente")
             {
                 $response = $handler->handle($request);
             }
             else
             {
-                $mensaje = "Favor de definir el rol como admin, socio, cocinero o bartender, sólo de esos tipos";
+                $mensaje = "Favor de definir el rol como admin, socio, cocinero, bartender, mozo, cervecero o cliente,sólo de esos tipos";
             }
         }
         else

@@ -14,7 +14,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 require_once './db/AccesoDatos.php';
 require_once './middlewares/UsuarioLogeadoMiddleware.php';
-
+require_once './middlewares/PedidoValidarMiddleware.php';
 require_once './controllers/UsuarioController.php';
 require_once './controllers/MenuController.php';
 require_once './controllers/PedidoController.php';
@@ -56,6 +56,7 @@ $app->group('/usuario', function (RouteCollectorProxy $group) {
     $group->post('/alta', \PedidoController::class . ':CargarUno');
     $group->post('s/modifica', \PedidoController::class . ':ModificarUno');
     $group->get('/baja/{id_pedido}', \PedidoController::class . ':BorrarUno');
+    $group->post('/', \PedidoController::class . ':CambiarEstado')->add(new PedidoValidarMiddleware());
   });
 
   $app->group('/mesa', function (RouteCollectorProxy $group) {
