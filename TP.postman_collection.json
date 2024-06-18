@@ -1,0 +1,1294 @@
+{
+	"info": {
+		"_postman_id": "28edf044-ecca-46b6-86fa-2be3d80535d3",
+		"name": "TP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26834312"
+	},
+	"item": [
+		{
+			"name": "USUARIO alta por post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Alejandra",
+							"type": "text"
+						},
+						{
+							"key": "apellido",
+							"value": "Casas",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "claudia.casas@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/usuario/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"usuario",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USUARIO trae todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USUARIO borrado lógico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:777/usuario/baja/Pablo Rotela",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"usuario",
+						"baja",
+						"Pablo Rotela"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USUARIO carga tabla desde CSV",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/usuario/desdeCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"usuario",
+						"desdeCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USUARIO carga CSV desde tabla",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/usuario/haciaCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"usuario",
+						"haciaCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USUARIO modifica",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Claudia",
+							"type": "text"
+						},
+						{
+							"key": "apellido",
+							"value": "Casas",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "claudia.casas@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "rol",
+							"value": "repostero",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/usuarios/modifica",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"usuarios",
+						"modifica"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MENU alta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Ensalada de lechuga  tomates y cebolla",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "409",
+							"type": "text"
+						},
+						{
+							"key": "demora",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/menu/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"menu",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MENU modifica",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Milanesas con papas fritas",
+							"type": "text"
+						},
+						{
+							"key": "demora",
+							"value": "25",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/menus/modifica",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"menus",
+						"modifica"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MENU traer todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/menus/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"menus",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MENU consulta por NUMERO",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/menu//13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"menu",
+						"",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MENU modifica por NUMERO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "numero",
+							"value": "13",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "Pepsi zero lata ",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "1170",
+							"type": "text"
+						},
+						{
+							"key": "demora",
+							"value": "25",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/menus//modifica",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"menus",
+						"",
+						"modifica"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MENU borrado lógico",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/menu/baja/Milanesas con papas fritas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"menu",
+						"baja",
+						"Milanesas con papas fritas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MENU consulta por nombre",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/menu/Milanesa con papas fritas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"menu",
+						"Milanesa con papas fritas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MENU carga CSV desde tabla",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/menus/haciaCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"menus",
+						"haciaCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MENU carga tabla desde CSV",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/menus/desdeCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"menus",
+						"desdeCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PEDIDO alta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "estado_pedido",
+							"value": "pendiente",
+							"type": "text"
+						},
+						{
+							"key": "tiempoEstimado",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "id_mesa",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "fecha",
+							"value": "2024-06-16",
+							"type": "text"
+						},
+						{
+							"key": "id_usuario",
+							"value": "11",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/pedido/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"pedido",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PEDIDO traer todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/pedidos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"pedidos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PEDIDO consulta por número de pedido",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/pedido/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"pedido",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PEDIDO modifica",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_pedido",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "estado_pedido",
+							"value": "pendiente",
+							"type": "text"
+						},
+						{
+							"key": "tiempoEstimado",
+							"value": "11",
+							"type": "text"
+						},
+						{
+							"key": "id_mesa",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "fecha",
+							"value": "2024-06-16",
+							"type": "text"
+						},
+						{
+							"key": "id_usuario",
+							"value": "11",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"value": "C:\\xampp\\htdocs\\2024\\TP\\fotos\\2.png",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/pedidos/modifica",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"pedidos",
+						"modifica"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PEDIDO borrado",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/pedido/baja/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"pedido",
+						"baja",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PEDIDO traer uno por número de pedido",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/pedido/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"pedido",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PEDIDO carga CSV desde tabla",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/pedidos/haciaCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"pedidos",
+						"haciaCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PEDIDO carga tabla desde CSV ",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/pedidos/desdeCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"pedidos",
+						"desdeCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PEDIDO cambiar estado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_pedido",
+							"value": ""
+						},
+						{
+							"key": "estado_pedido",
+							"value": "en preparacion"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/pedido/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"pedido",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MESA trae todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/mesas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"mesas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MESA alta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "estado_mesa",
+							"value": "con cliente esperando",
+							"type": "text"
+						},
+						{
+							"key": "tipoComentario",
+							"value": "positivo",
+							"type": "text"
+						},
+						{
+							"key": "comentario",
+							"value": "por lo menos me atienden",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/mesa/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"mesa",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MESA modifica",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_mesa",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "estado_mesa",
+							"value": "con cliente esperando",
+							"type": "text"
+						},
+						{
+							"key": "tipoComentario",
+							"value": "negativo",
+							"type": "text"
+						},
+						{
+							"key": "comentario",
+							"value": "la atención deja mucho que desear",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/mesas/modifica",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"mesas",
+						"modifica"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MESA traer uno por número de mesa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/mesa/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"mesa",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MESA carga CSV desde tabla",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/mesas/haciaCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"mesas",
+						"haciaCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MESA carga tabla desde CSV",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/mesas/desdeCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"mesas",
+						"desdeCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MESA borrado",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/mesa/baja/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"mesa",
+						"baja",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DETALLE alta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_pedido",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "id_menu",
+							"value": "13",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/detalle/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"detalle",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DETALLE trae todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_pedido",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "id_menu",
+							"value": "13",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/detalles/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"detalles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DETALLE trae uno",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:777/detalle/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"detalle",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DETALLE modifica",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_pedido",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "id_menu",
+							"value": "13",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/detalles/modifica",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"detalles",
+						"modifica"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DETALLE borrado",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_pedido",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "id_menu",
+							"value": "13",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/detalle/baja/4 13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"detalle",
+						"baja",
+						"4 13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DETALLE carga CSV desde tabla",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_pedido",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "id_menu",
+							"value": "13",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/detalles/haciaCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"detalles",
+						"haciaCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DETALLE carga tabla desde CSV",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_pedido",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "id_menu",
+							"value": "13",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:777/detalles/desdeCSV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "777",
+					"path": [
+						"detalles",
+						"desdeCSV"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

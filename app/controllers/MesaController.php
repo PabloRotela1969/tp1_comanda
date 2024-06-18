@@ -7,14 +7,12 @@ class MesaController extends Mesa
     {
         $parametros          = $request->getParsedBody();
         $estado_mesa         = $parametros['estado_mesa'];
-        $importe             = $parametros['importe'];
         $tipoComentario      = $parametros['tipoComentario'];
         $comentario          = $parametros['comentario'];
 
         $usr = new Mesa();
         
         $usr->estado_mesa = $estado_mesa;
-        $usr->importe = $importe;
         $usr->tipoComentario = $tipoComentario;
         $usr->comentario = $comentario;
         $numeroMesa = $usr->crearMesa();
@@ -23,6 +21,32 @@ class MesaController extends Mesa
         return $response->withHeader('Content-Type', 'application/json');
 
     }
+
+    
+    public function cargarTablaDesdeCSV($request,$response,$args)
+    {
+        $uno = new Mesa();
+        $uno->cargarTablasDesdeCSV();
+
+        $payload = json_encode(array("mensaje" => "Tabla Mesa cargada exitosamente"));
+
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+
+    }
+
+    public function cargarCSVdesdeTabla($request,$response,$args)
+    {
+        $uno = new Mesa();
+        $uno->cargarCSVdesdeTablas();
+
+        $payload = json_encode(array("mensaje" => "Tabla Mesa bajada completa a CSV exitosamente"));
+
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+
+    }
+
 
     public function TraerUno($request, $response, $args)
     {
@@ -52,11 +76,9 @@ class MesaController extends Mesa
         $id_Mesa     = $parametros['id_mesa'];
         $Mesa = Mesa::obtenerMesa($id_Mesa);
         $estado_mesa            = $parametros['estado_mesa'];
-        $importe                = $parametros['importe'];
         $tipoComentario         = $parametros['tipoComentario'];
         $comentario             = $parametros['comentario'];
         $Mesa->estado_mesa = $estado_mesa;
-        $Mesa->importe = $importe;
         $Mesa->tipoComentario = $tipoComentario;
         $Mesa->comentario = $comentario;
 

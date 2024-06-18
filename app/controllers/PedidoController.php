@@ -7,7 +7,6 @@ class PedidoController extends Pedido
     {
         $parametros          = $request->getParsedBody();
         $estado_pedido       = $parametros['estado_pedido'];
-        $id_menu             = $parametros['id_menu'];
         $tiempoEstimado      = $parametros['tiempoEstimado'];
         $id_mesa             = $parametros['id_mesa'];
         $fecha               = $parametros['fecha'];
@@ -18,7 +17,6 @@ class PedidoController extends Pedido
         
         $usr->estado_pedido = $estado_pedido;
         $usr->tiempoEstimado = $tiempoEstimado;
-        $usr->id_menu = $id_menu;
         $usr->id_mesa = $id_mesa;
         $usr->fecha = $fecha;
         $usr->id_usuario = $id_usuario;
@@ -29,6 +27,32 @@ class PedidoController extends Pedido
         return $response->withHeader('Content-Type', 'application/json');
 
     }
+
+
+    public function cargarTablaDesdeCSV($request,$response,$args)
+    {
+        $uno = new Pedido();
+        $uno->cargarTablasDesdeCSV();
+
+        $payload = json_encode(array("mensaje" => "Tabla Pedido cargada exitosamente"));
+
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+
+    }
+
+    public function cargarCSVdesdeTabla($request,$response,$args)
+    {
+        $uno = new Pedido();
+        $uno->cargarCSVdesdeTablas();
+
+        $payload = json_encode(array("mensaje" => "Tabla Pedido bajada completa a CSV exitosamente"));
+
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+
+    }
+
 
     public function TraerUno($request, $response, $args)
     {
@@ -58,7 +82,6 @@ class PedidoController extends Pedido
         $id_pedido     = $parametros['id_pedido'];
         $Pedido = Pedido::obtenerPedido($id_pedido);
         $estado              = $parametros['estado_pedido'];
-        $id_menu             = $parametros['id_menu'];
         $tiempoEstimado      = $parametros['tiempoEstimado'];
         $id_mesa             = $parametros['id_mesa'];
         $fecha               = $parametros['fecha'];
@@ -66,7 +89,6 @@ class PedidoController extends Pedido
         $foto                = $parametros['foto'];
         
         $Pedido->estado_pedido = $estado;
-        $Pedido->id_menu = $id_menu;
         $Pedido->tiempoEstimado = $tiempoEstimado;
         $Pedido->id_mesa = $id_mesa;
         $Pedido->fecha = $fecha;

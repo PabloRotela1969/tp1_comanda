@@ -1,13 +1,11 @@
 <?php
-
+include_once './txt/archivos.php';
 class Usuario
 {
     public $id_usuario;
     public $nombre;
     public $apellido;
     public $mail;
-    //public $estado;// dak forzil
-    //public $id_pedido;// dak forzil
     public $rol;
     public $activo;
 
@@ -25,6 +23,34 @@ class Usuario
 
         return $objAccesoDatos->obtenerUltimoId();
     }
+
+
+    public function cargarTablasDesdeCSV()
+    {
+        $array = archivos::LeerArchivo('./data/usuarios.csv');
+        foreach ($array as $linea)
+        {
+            $dato = explode(',',$linea);
+            $this->id_usuario    = $dato[0];
+            $this->nombre        = $dato[1];
+            $this->apellido      = $dato[2];
+            $this->mail          = $dato[3];
+            $this->rol           = $dato[4];
+            $this->activo        = $dato[5];
+            $this->crearUsuario();
+        }
+    }
+
+    public function cargarCSVdesdeTablas()
+    {
+        $array = self::obtenerTodos();
+        foreach($array as $linea)
+        {
+            $cadena = $linea->id_usuario.",".$linea->nombre.",".$linea->apellido.",".$linea->mail.",".$linea->rol.",".$linea->activo."\n";
+            archivos::escribirCadenaHaciaArchivo('./data/usuariosBajados.csv',$cadena);
+        }
+    }
+
 
     public static function obtenerTodos()
     {

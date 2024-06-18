@@ -24,6 +24,31 @@ class UsuarioController extends Usuario
 
     }
 
+    public function cargarTablaDesdeCSV($request,$response,$args)
+    {
+        $uno = new Usuario();
+        $uno->cargarTablasDesdeCSV();
+
+        $payload = json_encode(array("mensaje" => "Tabla Usuario cargada exitosamente"));
+
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+
+    }
+
+    public function cargarCSVdesdeTabla($request,$response,$args)
+    {
+        $uno = new Usuario();
+        $uno->cargarCSVdesdeTablas();
+
+        $payload = json_encode(array("mensaje" => "Tabla Usuario bajada completa a CSV exitosamente"));
+
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+
+    }
+
+
     public function TraerUno($request, $response, $args)
     {
         // Buscamos usuario por nombre
