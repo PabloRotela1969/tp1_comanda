@@ -1,10 +1,16 @@
-19,empanada de carne, 1900,23,1
-20,empanada de pollo,1910,24,1
-21,empanada de jamón y queso,1860,21,1
-22,empanada de verdura,1790,19,1
-23,empanada de humita,1690,19,1
-24,pizza mozzarella,2000,34,1
-25,pizza napolitana,2200,35,1
-26,pizza de cebolla,1990,31,1
-27,pizza de anchoas,2010,33,1
-28,sopa,700,21,1
+19,empanada de carne, 1900,cocina,1
+20,empanada de pollo,1910,cocina,1
+21,empanada de jamón y queso,1860,cocina,1
+22,empanada de verdura,1790,cocina,1
+23,empanada de humita,1690,cocina,1
+24,pizza mozzarella,2000,cocina,1
+25,pizza napolitana,2200,cocina,1
+26,pizza de cebolla,1990,cocina,1
+27,pizza de anchoas,2010,cocina,1
+28,sopa,700,cocina,1
+29,vermout,1900,bar,1
+30,coca cola zero,1805,bar,1
+31,vino,600,bar,1
+32,leche,900,bar,1
+
+

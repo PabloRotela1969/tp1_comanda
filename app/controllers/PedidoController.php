@@ -41,16 +41,17 @@ class PedidoController extends Pedido
 
     }
 
+
     public function cargarCSVdesdeTabla($request,$response,$args)
     {
-        $uno = new Pedido();
-        $uno->cargarCSVdesdeTablas();
-
-        $payload = json_encode(array("mensaje" => "Tabla Pedido bajada completa a CSV exitosamente"));
-
-        $response->getBody()->write($payload);
-        return $response->withHeader('Content-Type', 'application/json');
-
+        $lista = Pedido::obtenerTodos(); // Obtén los datos de la base de datos
+        $csvContent = "id_pedido,estado_pedido,tiempoEstimado,id_mesa,activo,fecha,id_usuario,foto\n"; // Encabezado CSV
+        foreach ($lista as $pedido) 
+        {
+            $csvContent .= $pedido->id_pedido.",".$pedido->estado_pedido.",".$pedido->tiempoEstimado.",".$pedido->id_mesa.",".$pedido->activo.",".$pedido->fecha.",".$pedido->id_usuario.",".$pedido->foto."\n";
+        }
+        $response->getBody()->write($csvContent);
+        return $response->withHeader('Content-Type', 'text/csv');
     }
 
 

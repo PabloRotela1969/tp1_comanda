@@ -1,5 +1,7 @@
 <?php
 require_once './models/Usuario.php';
+require_once './seguridad/AutentificadorJWT.php';
+require_once './pdf/fpdf.php';
 
 class UsuarioController extends Usuario
 {
@@ -24,6 +26,29 @@ class UsuarioController extends Usuario
 
     }
 
+    public function Login($request,$response,$args)
+    {
+        $parametros = $request->getParsedBody();
+        $nombre     = $parametros['nombre'];
+        $apellido   = $parametros['apellido'];
+        $usuario = Usuario::obtenerUsuario($nombre,$apellido);
+        if(isset($usuario))
+        {
+            $datos = array('usuario' => $usuario);
+            $token = AutentificadorJWT::CrearToken($datos);
+            $payload = json_encode(array('jwt' => $token));
+
+        }
+        else
+        {
+            $payload = json_encode(array("mensaje" => "No se encontró el usuario"));
+        }
+
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+
+    }
+
     public function cargarTablaDesdeCSV($request,$response,$args)
     {
         $uno = new Usuario();
@@ -38,15 +63,36 @@ class UsuarioController extends Usuario
 
     public function cargarCSVdesdeTabla($request,$response,$args)
     {
-        $uno = new Usuario();
-        $uno->cargarCSVdesdeTablas();
-
-        $payload = json_encode(array("mensaje" => "Tabla Usuario bajada completa a CSV exitosamente"));
-
-        $response->getBody()->write($payload);
-        return $response->withHeader('Content-Type', 'application/json');
-
+        $lista = Usuario::obtenerTodos(); // Obtén los datos de la base de datos
+        $csvContent = "id_usuario,nombre,apellido,mail,rol,activo\n"; // Encabezado CSV
+        foreach ($lista as $usuario) 
+        {
+            $csvContent .= $usuario->id_usuario.",".$usuario->nombre.",".$usuario->apellido.",".$usuario->mail.",".$usuario->rol.",".$usuario->activo."\n";
+        }
+        $response->getBody()->write($csvContent);
+        return $response->withHeader('Content-Type', 'text/csv');
     }
+
+
+    public function cargarPDFdesdeTabla($request,$response,$args)
+    {
+        $lista = Usuario::obtenerTodos(); // Obtén los datos de la base de datos
+        $csvContent = "id_usuario,nombre,apellido,mail,rol,activo\n"; // Encabezado CSV
+        foreach ($lista as $usuario) 
+        {
+            $csvContent .= $usuario->id_usuario.",".$usuario->nombre.",".$usuario->apellido.",".$usuario->mail.",".$usuario->rol.",".$usuario->activo."\n";
+        }
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','',12);
+        $pdf->Multicell(0,10,$csvContent,0,'L');
+
+        $pdf->Output('Archivo.pdf','D');
+
+        $response->getBody()->write($csvContent);
+        return $response->withHeader('Content-Type', 'text/csv');
+    }
+
 
 
     public function TraerUno($request, $response, $args)

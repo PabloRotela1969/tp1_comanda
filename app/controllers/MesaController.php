@@ -37,14 +37,14 @@ class MesaController extends Mesa
 
     public function cargarCSVdesdeTabla($request,$response,$args)
     {
-        $uno = new Mesa();
-        $uno->cargarCSVdesdeTablas();
-
-        $payload = json_encode(array("mensaje" => "Tabla Mesa bajada completa a CSV exitosamente"));
-
-        $response->getBody()->write($payload);
-        return $response->withHeader('Content-Type', 'application/json');
-
+        $lista = Mesa::obtenerTodos(); // Obtén los datos de la base de datos
+        $csvContent = "id_mesa,estado_mesa,tipoComentario,comentario,activo\n"; // Encabezado CSV
+        foreach ($lista as $mesa) 
+        {
+            $csvContent .= $mesa->id_mesa.",".$mesa->estado_mesa.",".$mesa->tipoComentario.",".$mesa->comentario.",".$mesa->activo."\n";
+        }
+        $response->getBody()->write($csvContent);
+        return $response->withHeader('Content-Type', 'text/csv');
     }
 
 

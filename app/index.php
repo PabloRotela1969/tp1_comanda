@@ -20,6 +20,9 @@ require_once './controllers/MenuController.php';
 require_once './controllers/PedidoController.php';
 require_once './controllers/MesaController.php';
 require_once './controllers/DetallePedidoController.php';
+require_once './seguridad/AutentificadorJWT.php';
+require_once './middlewares/AuthMiddleware.php';
+
 
 // Load ENV
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -38,11 +41,13 @@ $app->addBodyParsingMiddleware();
 $app->group('/usuario', function (RouteCollectorProxy $group) {
     $group->get('s/', \UsuarioController::class . ':TraerTodos');
     $group->get('/{nombre} {apellido}', \UsuarioController::class . ':TraerUno');
+    $group->post('/login', \UsuarioController::class . ':Login');
     $group->post('/alta', \UsuarioController::class . ':CargarUno')->add(new UsuarioLogeadoMiddleware());
     $group->post('s/modifica', \UsuarioController::class . ':ModificarUno');
     $group->get('/baja/{nombre} {apellido}', \UsuarioController::class . ':BorrarUno');
     $group->get('/desdeCSV', \UsuarioController::class . ':cargarTablaDesdeCSV');
     $group->get('/haciaCSV', \UsuarioController::class . ':cargarCSVdesdeTabla');
+    $group->get('/haciaPDF', \UsuarioController::class . ':cargarPDFdesdeTabla');
   });
 
   $app->group('/menu', function (RouteCollectorProxy $group) {
@@ -53,6 +58,7 @@ $app->group('/usuario', function (RouteCollectorProxy $group) {
     $group->post('s/modifica', \MenuController::class . ':ModificarUno');
     $group->post('s//modifica', \MenuController::class . ':ModificarPorNumero');
     $group->get('/baja/{menu}', \MenuController::class . ':BorrarUno');
+    $group->get('/baja//{id_menu}', \MenuController::class . ':BorrarUnoPorNumero');
     $group->get('s/desdeCSV', \MenuController::class . ':cargarTablaDesdeCSV');
     $group->get('s/haciaCSV', \MenuController::class . ':cargarCSVdesdeTabla');
   });

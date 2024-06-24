@@ -8,11 +8,11 @@ class MenuController extends Menu
         $parametros          = $request->getParsedBody();
         $nombre              = $parametros['nombre'];
         $precio              = $parametros['precio'];
-        $demora              = $parametros['demora'];
+        $sector              = $parametros['sector'];
         $usr = new Menu();
         $usr->precio = $precio;
         $usr->nombre = $nombre;
-        $usr->demora = $demora;
+        $usr->sector = $sector;
         $usr->crearMenu();
         $payload = json_encode(array("mensaje" => "Menu creado exitosamente"));
 
@@ -36,14 +36,14 @@ class MenuController extends Menu
 
     public function cargarCSVdesdeTabla($request,$response,$args)
     {
-        $uno = new Menu();
-        $uno->cargarCSVdesdeTablas();
-
-        $payload = json_encode(array("mensaje" => "Tabla Menu bajada completa a CSV exitosamente"));
-
-        $response->getBody()->write($payload);
-        return $response->withHeader('Content-Type', 'application/json');
-
+        $lista = Menu::obtenerTodos(); // Obtén los datos de la base de datos
+        $csvContent = "id_menu,nombre,precio,sector,activo\n"; // Encabezado CSV
+        foreach ($lista as $menu) 
+        {
+            $csvContent .= $menu->id_menu.",".$menu->nombre.",".$menu->precio.",".$menu->sector.",".$menu->activo."\n";
+        }
+        $response->getBody()->write($csvContent);
+        return $response->withHeader('Content-Type', 'text/csv');
     }
 
 
@@ -85,10 +85,8 @@ class MenuController extends Menu
         $nombre     = $parametros['nombre'];
         $Menu = Menu::obtenerMenu($nombre);
         $precio     = $parametros['precio'];
-        $demora     = $parametros['demora'];
-        $precio     = $parametros['precio'];
-        $demora     = $parametros['demora'];
-        $Menu->demora = $demora;
+        $sector     = $parametros['sector'];
+        $Menu->sector = $sector;
         $Menu->precio = $precio;
         
         Menu::modificarMenu($Menu);
@@ -116,14 +114,24 @@ class MenuController extends Menu
         $Menu = Menu::obtenerMenuPorNumero($numero);
         $nombre     = $parametros['nombre'];
         $precio     = $parametros['precio'];
-        $demora     = $parametros['demora'];
+        $sector     = $parametros['sector'];
         $Menu->nombre = $nombre;
-        $Menu->demora = $demora;
+        $Menu->sector = $sector;
         $Menu->precio = $precio;
         
         Menu::modificarMenu($Menu);
 
         $payload = json_encode(array("mensaje" => "Menu ".$nombre." modificado exitosamente"));
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    public function BorrarUnoPorNumero($request, $response, $args)
+    {
+        $usr = $args['id_menu'];
+
+        Menu::borrarMenuPorNumero($usr);
+        $payload = json_encode(array("mensaje" => "Menu ".$usr." borrado con exito"));
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');
     }

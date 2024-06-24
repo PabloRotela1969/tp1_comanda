@@ -14,7 +14,8 @@ class Usuario
     public function crearUsuario()
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuario (nombre,apellido,mail,rol,activo) VALUES (:nombre,:apellido,:mail,:rol,1)");
+        $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuario (id_usuario,nombre,apellido,mail,rol,activo) VALUES (:id_usuario,:nombre,:apellido,:mail,:rol,1)");
+        $consulta->bindValue(':id_usuario', $this->id_usuario, PDO::PARAM_INT);
         $consulta->bindValue(':nombre', $this->nombre, PDO::PARAM_STR);
         $consulta->bindValue(':apellido', $this->apellido, PDO::PARAM_STR);
         $consulta->bindValue(':mail', $this->mail, PDO::PARAM_STR);

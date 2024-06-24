@@ -9,13 +9,19 @@ class DetallePedidoController extends DetallePedido
         $id_pedido           = $parametros['id_pedido'];
         $id_menu             = $parametros['id_menu'];
         $cantidad            = $parametros['cantidad'];
+        $estado_detalle      = $parametros['estado_detalle'];
+        $id_usuario          = $parametros['id_usuario'];
+        $demora              = $parametros['demora'];
         $usr = new DetallePedido();
        
         $usr->id_pedido = $id_pedido;
         $usr->id_menu = $id_menu;
         $usr->cantidad = $cantidad;
+        $usr->estado_detalle = $estado_detalle;
+        $usr->id_usuario = $id_usuario;
+        $usr->demora = $demora;
         $numeroPedido = $usr->crearDetalle();
-        $payload = json_encode(array("mensaje" => "Detalle ".$id_pedido." creado exitosamente"));
+        $payload = json_encode(array("mensaje" => "Detalle ".$id_pedido.",".$id_menu." creado exitosamente"));
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');
 
@@ -37,14 +43,14 @@ class DetallePedidoController extends DetallePedido
 
     public function cargarCSVdesdeTabla($request,$response,$args)
     {
-        $uno = new DetallePedido();
-        $uno->cargarCSVdesdeTablas();
-
-        $payload = json_encode(array("mensaje" => "Tabla Detalle bajada completa a CSV exitosamente"));
-
-        $response->getBody()->write($payload);
-        return $response->withHeader('Content-Type', 'application/json');
-
+        $lista = DetallePedido::obtenerTodos(); // Obtén los datos de la base de datos
+        $csvContent = "id_pedido,id_menu,cantidad,estado_detalle,id_usuario,demora,activo\n"; // Encabezado CSV
+        foreach ($lista as $detalle) 
+        {
+            $csvContent .= $detalle->id_pedido.",".$detalle->id_menu.",".$detalle->cantidad.",".$detalle->estado_detalle.",".$detalle->id_usuario.",".$detalle->demora.",".$detalle->activo."\n";
+        }
+        $response->getBody()->write($csvContent);
+        return $response->withHeader('Content-Type', 'text/csv');
     }
 
 
@@ -77,7 +83,13 @@ class DetallePedidoController extends DetallePedido
         $id_menu            = $parametros['id_menu'];
         $DetallePedido = DetallePedido::obtenerDetallePorPedidoYMenu($id_pedido,$id_menu);
         $cantidad           = $parametros['cantidad'];
+        $estado_detalle     = $parametros['estado_detalle'];
+        $id_usuario         = $parametros['id_usuario'];
+        $demora             = $parametros['demora'];
         $DetallePedido->cantidad  = $cantidad;
+        $DetallePedido->estado_detalle = $estado_detalle;
+        $DetallePedido->id_usuario = $id_usuario;
+        $DetallePedido->demora = $demora;
         DetallePedido::modificarDetalle($DetallePedido);
 
         $payload = json_encode(array("mensaje" => "Detalle ".$id_pedido." ".$id_menu." modificado exitosamente"));
